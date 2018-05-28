@@ -1,7 +1,7 @@
 # Личный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Григорий Леванов](https://up.htmlacademy.ru/ecmascript/5/user/630209).
-* Наставник: `Неизвестно`.
+* Наставник: [Николай Эмрих](https://up.htmlacademy.ru/ecmascript/5/user/129463).
 
 ---
 
