@@ -4,9 +4,28 @@ const keycode = {
   left: 37
 };
 
+const ARROWS = `<div class="arrows__wrap">
+    <style>
+      .arrows__wrap {
+        position: absolute;
+        top: 135px;
+        left: 50%;
+        margin-left: -56px;
+      }
+      .arrows__btn {
+        background: none;
+        border: 2px solid black;
+        padding: 5px 20px;
+      }
+    </style>
+    <button class="arrows__btn"><-</button>
+    <button class="arrows__btn">-></button>
+</div>`;
+
 const mainSection = document.querySelector(`.main`);
 const template = document.querySelector(`#templates`);
 const screenList = template.content.children;
+const app = document.querySelector(`.app`);
 
 let currentScreen = 0;
 
@@ -22,15 +41,30 @@ const switchScreen = (index) => {
   selectScreen(screenList[currentScreen]);
 };
 
-document.addEventListener(`keydown`, (evt) => {
+const onLeftArrowEvent = () => {
+  switchScreen(currentScreen - 1);
+};
+
+const onRightArrowEvent = () => {
+  switchScreen(currentScreen + 1);
+};
+
+const onArrowKeyPress = (evt) => {
   switch (evt.keyCode) {
     case keycode.left:
-      switchScreen(currentScreen - 1);
+      onLeftArrowEvent();
       break;
     case keycode.right:
-      switchScreen(currentScreen + 1);
+      onRightArrowEvent();
       break;
   }
-});
+};
 
-selectScreen(screenList[0]);
+const initScreen = () => {
+  selectScreen(screenList[0]);
+  app.insertAdjacentHTML(`beforeEnd`, ARROWS);
+};
+
+
+initScreen();
+document.addEventListener(`keydown`, onArrowKeyPress);
