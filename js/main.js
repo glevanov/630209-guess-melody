@@ -4,7 +4,7 @@ const KEYCODE = {
   RIGHT: 39,
   LEFT: 37
 };
-const ARROWS = `<div class="arrows__wrap">
+const ARROWS_TEMPLATE = `<div class="arrows__wrap">
     <style>
       .arrows__wrap {
         position: absolute;
@@ -23,25 +23,43 @@ const ARROWS = `<div class="arrows__wrap">
 </div>`;
 
 // --DOM
-const mainSection = document.querySelector(`.main`);
-const template = document.querySelector(`#templates`);
-const screensList = template.content.children;
+
+const templateContent = document.querySelector(`#templates`).content;
 const app = document.querySelector(`.app`);
+const ScreensElements = {
+  welcome: templateContent.querySelector(`.main--welcome`),
+  genre: templateContent.querySelector(`.main--level-genre`),
+  artist: templateContent.querySelector(`.main--level-artist`),
+  result: {
+    win: templateContent.querySelectorAll(`.main--result`)[0],
+    timeout: templateContent.querySelectorAll(`.main--result`)[1],
+    exhausted: templateContent.querySelectorAll(`.main--result`)[2]
+  }
+};
+const screens = [
+  ScreensElements.welcome,
+  ScreensElements.genre,
+  ScreensElements.artist,
+  ScreensElements.result.win,
+  ScreensElements.result.timeout,
+  ScreensElements.result.exhausted,
+];
 
 // --Переменные
 let currentScreen = 0;
 
 // --Функции
 const selectScreen = (element) => {
-  mainSection.innerHTML = ``;
-  mainSection.appendChild(element.cloneNode(true));
+  const activeScreen = document.querySelector(`.main`);
+  activeScreen.remove();
+  app.insertBefore(element.cloneNode(true), app.children[1]);
 };
 
 const switchScreen = (index) => {
-  index = index < 0 ? screensList.length - 1 : index;
-  index = index >= screensList.length ? 0 : index;
+  index = index < 0 ? screens.length - 1 : index;
+  index = index >= screens.length ? 0 : index;
   currentScreen = index;
-  selectScreen(screensList[currentScreen]);
+  selectScreen(screens[currentScreen]);
 };
 
 const onLeftArrowEvent = () => {
@@ -66,12 +84,12 @@ const onArrowKeyPress = (evt) => {
 // --Разное
 
 // Выбирает первый экран
-selectScreen(screensList[0]);
+selectScreen(screens[0]);
 // Вешает обработчик на нажалие стрелок влево-вправо
 document.addEventListener(`keydown`, onArrowKeyPress);
 
 // Вставляет стрелки из шаблона стрелок и вешает на них обработчики
-app.insertAdjacentHTML(`beforeEnd`, ARROWS);
+app.insertAdjacentHTML(`beforeEnd`, ARROWS_TEMPLATE);
 
 const arrows = document.querySelectorAll(`.arrows__btn`);
 const leftArrowButton = arrows[0];
