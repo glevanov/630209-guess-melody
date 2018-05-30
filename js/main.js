@@ -23,7 +23,6 @@ const ARROWS_TEMPLATE = `<div class="arrows__wrap">
 </div>`;
 
 // --DOM
-
 const templateContent = document.querySelector(`#templates`).content;
 const app = document.querySelector(`.app`);
 const ScreensElements = {
@@ -85,7 +84,8 @@ const onArrowKeyPress = (evt) => {
 
 // Выбирает первый экран
 renderScreen(screens[0]);
-// Вешает обработчик на нажалие стрелок влево-вправо
+
+// Вешает обработчик на нажатие стрелок влево-вправо
 document.addEventListener(`keydown`, onArrowKeyPress);
 
 // Вставляет стрелки из шаблона стрелок и вешает на них обработчики
