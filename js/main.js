@@ -49,17 +49,17 @@ const screens = [
 let currentScreen = 0;
 
 // --Функции
-const selectScreen = (element) => {
+const renderScreen = (element) => {
   const activeScreen = document.querySelector(`.main`);
   activeScreen.remove();
-  app.insertBefore(element.cloneNode(true), app.children[1]);
+  app.insertBefore(element.cloneNode(true), app.children[0]);
 };
 
 const switchScreen = (index) => {
-  index = index < 0 ? screens.length - 1 : index;
-  index = index >= screens.length ? 0 : index;
+  index = index < 0 ? 0 : index;
+  index = index >= screens.length ? screens.length - 1 : index;
   currentScreen = index;
-  selectScreen(screens[currentScreen]);
+  renderScreen(screens[currentScreen]);
 };
 
 const onLeftArrowEvent = () => {
@@ -84,7 +84,7 @@ const onArrowKeyPress = (evt) => {
 // --Разное
 
 // Выбирает первый экран
-selectScreen(screens[0]);
+renderScreen(screens[0]);
 // Вешает обработчик на нажалие стрелок влево-вправо
 document.addEventListener(`keydown`, onArrowKeyPress);
 
