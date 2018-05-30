@@ -25,7 +25,7 @@ const ARROWS = `<div class="arrows__wrap">
 // --DOM
 const mainSection = document.querySelector(`.main`);
 const template = document.querySelector(`#templates`);
-const screenList = template.content.children;
+const screensList = template.content.children;
 const app = document.querySelector(`.app`);
 
 // --Переменные
@@ -38,10 +38,10 @@ const selectScreen = (element) => {
 };
 
 const switchScreen = (index) => {
-  index = index < 0 ? screenList.length - 1 : index;
-  index = index >= screenList.length ? 0 : index;
+  index = index < 0 ? screensList.length - 1 : index;
+  index = index >= screensList.length ? 0 : index;
   currentScreen = index;
-  selectScreen(screenList[currentScreen]);
+  selectScreen(screensList[currentScreen]);
 };
 
 const onLeftArrowEvent = () => {
@@ -63,27 +63,19 @@ const onArrowKeyPress = (evt) => {
   }
 };
 
-const initScreen = () => {
-  // Выводит первый экран
-  selectScreen(screenList[0]);
-  // Вставляет стрелки
-  app.insertAdjacentHTML(`beforeEnd`, ARROWS);
-};
+// --Разное
 
-const addHandlers = () => {
-  // Добавляет обработчик на клавиши стрелок
-  document.addEventListener(`keydown`, onArrowKeyPress);
-  // Добавляет обработчик на кнопки стрелок
-  {
-    const arrows = document.querySelectorAll(`.arrows__btn`);
-    const leftArrowButton = arrows[0];
-    const rightArrowButton = arrows[1];
+// Выбирает первый экран
+selectScreen(screensList[0]);
+// Вешает обработчик на нажалие стрелок влево-вправо
+document.addEventListener(`keydown`, onArrowKeyPress);
 
-    leftArrowButton.addEventListener(`click`, onLeftArrowEvent);
-    rightArrowButton.addEventListener(`click`, onRightArrowEvent);
-  }
-};
+// Вставляет стрелки из шаблона стрелок и вешает на них обработчики
+app.insertAdjacentHTML(`beforeEnd`, ARROWS);
 
-// --Вызовы
-initScreen();
-addHandlers();
+const arrows = document.querySelectorAll(`.arrows__btn`);
+const leftArrowButton = arrows[0];
+const rightArrowButton = arrows[1];
+
+leftArrowButton.addEventListener(`click`, onLeftArrowEvent);
+rightArrowButton.addEventListener(`click`, onRightArrowEvent);
