@@ -1,8 +1,8 @@
 'use strict';
 (() => {
   const Keycode = {
-    RIGHT: 39,
-    LEFT: 37
+    ARROW_RIGHT: 39,
+    ARROW_LEFT: 37
   };
   const ARROWS_TEMPLATE = `<div class="arrows__wrap">
     <style>
@@ -29,7 +29,7 @@
   let currentScreen = 0;
 
   const renderScreen = (element) => {
-    const activeScreen = document.querySelector(`.main`);
+    const activeScreen = app.querySelector(`.main`);
     app.replaceChild(element.cloneNode(true), activeScreen);
   };
 
@@ -50,10 +50,10 @@
 
   const onArrowKeyPress = (evt) => {
     switch (evt.keyCode) {
-      case Keycode.LEFT:
+      case Keycode.ARROW_LEFT:
         onLeftArrowEvent();
         break;
-      case Keycode.RIGHT:
+      case Keycode.ARROW_RIGHT:
         onRightArrowEvent();
         break;
     }
@@ -64,7 +64,7 @@
   document.addEventListener(`keydown`, onArrowKeyPress);
 
   app.insertAdjacentHTML(`beforeEnd`, ARROWS_TEMPLATE);
-  const arrows = document.querySelectorAll(`.arrows__btn`);
+  const arrows = app.querySelectorAll(`.arrows__btn`);
   const leftArrowButton = arrows[0];
   const rightArrowButton = arrows[1];
   leftArrowButton.addEventListener(`click`, onLeftArrowEvent);
