@@ -1,71 +1,60 @@
-(() => {
-  const Keycode = {
-    ARROW_RIGHT: 39,
-    ARROW_LEFT: 37
-  };
-  const ARROWS_TEMPLATE = `<div class="arrows__wrap">
-    <style>
-      .arrows__wrap {
-        position: absolute;
-        top: 135px;
-        left: 50%;
-        margin-left: -56px;
-      }
-      .arrows__btn {
-        background: none;
-        border: 2px solid black;
-        padding: 5px 20px;
-      }
-    </style>
-    <button class="arrows__btn"><-</button>
-    <button class="arrows__btn">-></button>
-</div>`;
+import ARROWS_TEMPLATE from './arrows_template.js';
+import WELCOME_TEMPLATE from './welcome_template.js';
+import GAME_GENRE_TEMPLATE from './game_genre_template';
+import GAME_ARTIST_TEMPLATE from './game_artist_template.js';
+import RESULT_WIN_TEMPLATE from './result_win.js';
+import RESULT_TIMEOUT_TEMPLATE from './result_timeout.js';
+import RESULT_EXHAUST_TEMPLATE from './result_exhaust.js';
 
-  const templateContent = document.querySelector(`#templates`).content;
-  const app = document.querySelector(`.app`);
-  const screens = Array.from(templateContent.querySelectorAll(`.main`));
+const Keycode = {
+  ARROW_RIGHT: 39,
+  ARROW_LEFT: 37
+};
 
-  let currentScreen = 0;
+const templateContent = document.querySelector(`#templates`).content;
+const app = document.querySelector(`.app`);
+const screens = Array.from(templateContent.querySelectorAll(`.main`));
 
-  const renderScreen = (element) => {
-    const activeScreen = app.querySelector(`.main`);
-    app.replaceChild(element.cloneNode(true), activeScreen);
-  };
+let currentScreen = 0;
 
-  const switchScreen = (index) => {
-    index = index < 0 ? 0 : index;
-    index = index >= screens.length ? screens.length - 1 : index;
-    currentScreen = index;
-    renderScreen(screens[currentScreen]);
-  };
+const renderScreen = (element) => {
+  const activeScreen = app.querySelector(`.main`);
+  app.replaceChild(element.cloneNode(true), activeScreen);
+};
 
-  const onLeftArrowEvent = () => {
-    switchScreen(currentScreen - 1);
-  };
+const switchScreen = (index) => {
+  index = index < 0 ? 0 : index;
+  index = index >= screens.length ? screens.length - 1 : index;
+  currentScreen = index;
+  renderScreen(screens[currentScreen]);
+};
 
-  const onRightArrowEvent = () => {
-    switchScreen(currentScreen + 1);
-  };
+const onLeftArrowEvent = () => {
+  switchScreen(currentScreen - 1);
+};
 
-  const onArrowKeyPress = (evt) => {
-    switch (evt.keyCode) {
-      case Keycode.ARROW_LEFT:
-        onLeftArrowEvent();
-        break;
-      case Keycode.ARROW_RIGHT:
-        onRightArrowEvent();
-        break;
-    }
-  };
+const onRightArrowEvent = () => {
+  switchScreen(currentScreen + 1);
+};
 
-  renderScreen(screens[0]);
+const onArrowKeyPress = (evt) => {
+  switch (evt.keyCode) {
+    case Keycode.ARROW_LEFT:
+      onLeftArrowEvent();
+      break;
+    case Keycode.ARROW_RIGHT:
+      onRightArrowEvent();
+      break;
+  }
+};
 
-  document.addEventListener(`keydown`, onArrowKeyPress);
+renderScreen(screens[0]);
 
-  app.insertAdjacentHTML(`beforeEnd`, ARROWS_TEMPLATE);
-  const arrows = app.querySelectorAll(`.arrows__btn`);
-  const leftArrowButton = arrows[0];
-  const rightArrowButton = arrows[1];
-  leftArrowButton.addEventListener(`click`, onLeftArrowEvent);
-  rightArrowButton.addEventListener(`click`, onRightArrowEvent);
-})();
+document.addEventListener(`keydown`, onArrowKeyPress);
+
+app.insertAdjacentHTML(`beforeEnd`, ARROWS_TEMPLATE);
+const arrows = app.querySelectorAll(`.arrows__btn`);
+const leftArrowButton = arrows[0];
+const rightArrowButton = arrows[1];
+leftArrowButton.addEventListener(`click`, onLeftArrowEvent);
+rightArrowButton.addEventListener(`click`, onRightArrowEvent);
