@@ -1,4 +1,3 @@
-'use strict';
 (() => {
   const Keycode = {
     ARROW_RIGHT: 39,
