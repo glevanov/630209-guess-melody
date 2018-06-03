@@ -1,4 +1,4 @@
-import {createElement} from './create-element.js';
+import {createElement} from './util.js';
 
 const TEMPLATE = `<section class="main main--level main--level-artist">
   <a class="play-again play-again__wrap" href="#">
