@@ -1,4 +1,6 @@
-const GAME_GENRE_TEMPLATE = `<section class="main main--level main--level-genre">
+import {createElement} from './create-element.js';
+
+const TEMPLATE = `<section class="main main--level main--level-genre">
   <a class="play-again play-again__wrap" href="#">
     <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
   </a>
@@ -83,4 +85,7 @@ const GAME_GENRE_TEMPLATE = `<section class="main main--level main--level-genre"
     </form>
   </div>
 </section>`;
-export default GAME_GENRE_TEMPLATE;
+
+const element = createElement(TEMPLATE);
+
+export default element;

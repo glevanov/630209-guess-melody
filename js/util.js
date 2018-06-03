@@ -1,10 +1,4 @@
-export const app = document.querySelector(`.app`);
-
-export const getScreenFromTemplate = (templateText) => {
-  const element = document.createElement(`template`);
-  element.innerHTML = templateText.trim();
-  return element.content;
-};
+const app = document.querySelector(`.app`);
 
 export const renderScreen = (element) => {
   const activeScreen = app.querySelector(`.main`);

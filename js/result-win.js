@@ -1,4 +1,6 @@
-const RESULT_WIN_TEMPLATE = `<section class="main main--result">
+import {createElement} from "./create-element";
+
+const TEMPLATE = `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
 
   <h2 class="title">Вы настоящий меломан!</h2>
@@ -8,4 +10,7 @@ const RESULT_WIN_TEMPLATE = `<section class="main main--result">
   <span class="main-comparison">Вы заняли 2 место из 10. Это&nbsp;лучше чем у&nbsp;80%&nbsp;игроков</span>
   <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
 </section>`;
-export default RESULT_WIN_TEMPLATE;
+
+const element = createElement(TEMPLATE);
+
+export default element;

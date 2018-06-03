@@ -1,4 +1,6 @@
-const WELCOME_TEMPLATE = `<section class="main main--welcome">
+import {createElement} from "./create-element";
+
+const TEMPLATE = `<section class="main main--welcome">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
   <button class="main-play">Начать игру</button>
   <h2 class="title main-title">Правила игры</h2>
@@ -8,4 +10,7 @@ const WELCOME_TEMPLATE = `<section class="main main--welcome">
     Удачи!
   </p>
 </section>`;
-export default WELCOME_TEMPLATE;
+
+const element = createElement(TEMPLATE);
+
+export default element;
