@@ -1,4 +1,4 @@
-import {createElement, app, renderScreen} from './util.js';
+import {createElement, renderScreen} from './util.js';
 import nextScreen from './game-artist';
 
 const TEMPLATE = `<section class="main main--welcome">
@@ -12,5 +12,8 @@ const TEMPLATE = `<section class="main main--welcome">
   </p>
 </section>`;
 const element = createElement(TEMPLATE);
+
+const nextButton = element.querySelector(`.main-play`);
+nextButton.addEventListener(`click`, () => renderScreen(nextScreen));
 
 export default element;
