@@ -1,4 +1,4 @@
-const app = document.querySelector(`.app`);
+export const app = document.querySelector(`.app`);
 
 export const renderScreen = (element) => {
   const activeScreen = app.querySelector(`.main`);

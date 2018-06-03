@@ -1,4 +1,5 @@
-import {createElement} from "./util.js";
+import {createElement, app, renderScreen} from './util.js';
+import nextScreen from './game-artist';
 
 const TEMPLATE = `<section class="main main--welcome">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -10,7 +11,6 @@ const TEMPLATE = `<section class="main main--welcome">
     Удачи!
   </p>
 </section>`;
-
 const element = createElement(TEMPLATE);
 
 export default element;

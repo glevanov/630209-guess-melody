@@ -1,4 +1,4 @@
-import {createElement} from "./util.js";
+import {createElement} from './util.js';
 
 const TEMPLATE = `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
