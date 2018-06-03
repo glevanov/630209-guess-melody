@@ -1,5 +1,5 @@
 import {createElement, renderScreen} from './util.js';
-import nextScreen from './game-artist';
+import nextScreen from './game-artist.js';
 
 const TEMPLATE = `<section class="main main--welcome">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>

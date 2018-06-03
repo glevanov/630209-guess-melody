@@ -1,4 +1,5 @@
-import {createElement} from './util.js';
+import {createElement, renderScreen} from './util.js';
+import firstScreen from './greeting.js';
 
 const TEMPLATE = `<section class="main main--level main--level-artist">
   <a class="play-again play-again__wrap" href="#">
@@ -62,7 +63,6 @@ const TEMPLATE = `<section class="main main--level main--level-artist">
     </form>
   </div>
 </section>`;
-
 const element = createElement(TEMPLATE);
 
 export default element;
