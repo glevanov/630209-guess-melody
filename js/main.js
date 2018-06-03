@@ -1,3 +1,4 @@
+import {getScreenFromTemplate, renderScreen, app} from './util.js';
 import ARROWS_TEMPLATE from './arrows_template.js';
 import WELCOME_TEMPLATE from './welcome_template.js';
 import GAME_GENRE_TEMPLATE from './game_genre_template';
@@ -11,16 +12,14 @@ const Keycode = {
   ARROW_LEFT: 37
 };
 
-const templateContent = document.querySelector(`#templates`).content;
-const app = document.querySelector(`.app`);
-const screens = Array.from(templateContent.querySelectorAll(`.main`));
+const screens = [getScreenFromTemplate(WELCOME_TEMPLATE),
+  getScreenFromTemplate(GAME_GENRE_TEMPLATE),
+  getScreenFromTemplate(GAME_ARTIST_TEMPLATE),
+  getScreenFromTemplate(RESULT_WIN_TEMPLATE),
+  getScreenFromTemplate(RESULT_TIMEOUT_TEMPLATE),
+  getScreenFromTemplate(RESULT_EXHAUST_TEMPLATE)];
 
 let currentScreen = 0;
-
-const renderScreen = (element) => {
-  const activeScreen = app.querySelector(`.main`);
-  app.replaceChild(element.cloneNode(true), activeScreen);
-};
 
 const switchScreen = (index) => {
   index = index < 0 ? 0 : index;
