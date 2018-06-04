@@ -1,4 +1,9 @@
 import {createElement} from './util.js';
+import {renderScreen} from './util';
+import greeting from './greeting';
+import resultWin from './result-win';
+import resultTimeout from './result-timeout';
+import resultExhaust from './result-exhaust';
 
 const TEMPLATE = `<section class="main main--level main--level-genre">
   <a class="play-again play-again__wrap" href="#">
@@ -85,7 +90,33 @@ const TEMPLATE = `<section class="main main--level main--level-genre">
     </form>
   </div>
 </section>`;
-
 const element = createElement(TEMPLATE);
+
+const returnButton = element.querySelector(`.play-again`);
+returnButton.addEventListener(`click`, () => renderScreen(greeting));
+
+const sendButton = element.querySelector(`.genre-answer-send`);
+sendButton.setAttribute(`disabled`, ``);
+const getRandomResult = () => {
+  const resultElements = [resultWin, resultTimeout, resultExhaust];
+  const randomIndex = Math.floor(Math.random() * resultElements.length - 1);
+  return resultElements[randomIndex];
+};
+sendButton.addEventListener(`click`, () => {
+  renderScreen(getRandomResult());
+});
+
+const answerWrapper = element.querySelector(`.genre`);
+answerWrapper.addEventListener(`click`, () => {
+  const checkboxList = Array.from(answerWrapper.querySelectorAll(`input[type="checkbox"]`));
+  const checkedList = checkboxList.map((it) => {
+    return !!it.checked;
+  });
+  if (checkedList.indexOf(true) !== -1) {
+    sendButton.removeAttribute(`disabled`);
+  } else {
+    sendButton.setAttribute(`disabled`, ``);
+  }
+});
 
 export default element;

@@ -1,5 +1,6 @@
 import {createElement, renderScreen} from './util.js';
-import firstScreen from './greeting.js';
+import greeting from './greeting.js';
+import gameGenre from './game-genre.js';
 
 const TEMPLATE = `<section class="main main--level main--level-artist">
   <a class="play-again play-again__wrap" href="#">
@@ -64,5 +65,16 @@ const TEMPLATE = `<section class="main main--level main--level-artist">
   </div>
 </section>`;
 const element = createElement(TEMPLATE);
+
+const returnButton = element.querySelector(`.play-again`);
+returnButton.addEventListener(`click`, () => renderScreen(greeting));
+
+const answerWrapper = element.querySelector(`.main-list`);
+answerWrapper.addEventListener(`click`, (evt) => {
+  const target = evt.target;
+  if (target.classList.contains(`main-answer`) || target.classList.contains(`main-answer-r`)) {
+    renderScreen(gameGenre);
+  }
+});
 
 export default element;

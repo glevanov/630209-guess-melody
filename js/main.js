@@ -1,4 +1,4 @@
 import {renderScreen} from './util.js';
-import firstScreen from './greeting.js';
+import greeting from './greeting.js';
 
-renderScreen(firstScreen);
+renderScreen(greeting);
