@@ -68,7 +68,6 @@ const element = createElement(template);
 
 element.querySelector(`.play-again`).addEventListener(`click`, () => renderScreen(greeting));
 
-const answerForm = element.querySelector(`.main-list`);
-answerForm.addEventListener(`change`, () => renderScreen(gameGenre));
+element.querySelector(`.main-list`).addEventListener(`change`, () => renderScreen(gameGenre));
 
 export default element;
