@@ -66,8 +66,7 @@ const template = `<section class="main main--level main--level-artist">
 </section>`;
 const element = createElement(template);
 
-const returnButton = element.querySelector(`.play-again`);
-returnButton.addEventListener(`click`, () => renderScreen(greeting));
+element.querySelector(`.play-again`).addEventListener(`click`, () => renderScreen(greeting));
 
 const answerForm = element.querySelector(`.main-list`);
 answerForm.addEventListener(`change`, () => renderScreen(gameGenre));

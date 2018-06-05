@@ -91,8 +91,7 @@ const template = `<section class="main main--level main--level-genre">
 </section>`;
 const element = createElement(template);
 
-const returnButton = element.querySelector(`.play-again`);
-returnButton.addEventListener(`click`, () => renderScreen(greeting));
+element.querySelector(`.play-again`).addEventListener(`click`, () => renderScreen(greeting));
 
 const getRndResultScreen = () => {
   const resultElements = [resultWin, resultTimeout, resultExhaust];
@@ -104,11 +103,7 @@ const answerForm = element.querySelector(`.genre`);
 const sendButton = answerForm.querySelector(`.genre-answer-send`);
 const checkboxes = Array.from(answerForm.elements.answer);
 answerForm.addEventListener(`change`, () => {
-  if (checkboxes.some((it) => it.checked)) {
-    sendButton.disabled = false;
-  } else {
-    sendButton.disabled = true;
-  }
+  sendButton.disabled = !checkboxes.some((it) => it.checked);
 });
 answerForm.addEventListener(`submit`, () => renderScreen(getRndResultScreen()));
 

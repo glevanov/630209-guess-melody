@@ -6,7 +6,7 @@ export const renderScreen = (element) => {
 };
 
 export const createElement = (templateText) => {
-  const element = document.createElement(`template`);
+  const element = document.createElement(`div`);
   element.innerHTML = templateText.trim();
-  return element.content.firstElementChild;
+  return element.firstElementChild;
 };

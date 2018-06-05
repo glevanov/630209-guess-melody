@@ -13,7 +13,6 @@ const template = `<section class="main main--result">
 </section>`;
 const element = createElement(template);
 
-const returnButton = element.querySelector(`.main-replay`);
-returnButton.addEventListener(`click`, () => renderScreen(greeting));
+element.querySelector(`.main-replay`).addEventListener(`click`, () => renderScreen(greeting));
 
 export default element;

@@ -13,7 +13,6 @@ const template = `<section class="main main--welcome">
 </section>`;
 const element = createElement(template);
 
-const nextButton = element.querySelector(`.main-play`);
-nextButton.addEventListener(`click`, () => renderScreen(gameArtist));
+element.querySelector(`.main-play`).addEventListener(`click`, () => renderScreen(gameArtist));
 
 export default element;
