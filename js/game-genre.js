@@ -1,5 +1,4 @@
-import {createElement} from './util.js';
-import {renderScreen} from './util';
+import {createElement, renderScreen} from './util.js';
 import greeting from './greeting';
 import resultWin from './result-win';
 import resultTimeout from './result-timeout';
@@ -97,20 +96,19 @@ returnButton.addEventListener(`click`, () => renderScreen(greeting));
 
 const sendButton = element.querySelector(`.genre-answer-send`);
 sendButton.setAttribute(`disabled`, ``);
-const getRandomResult = () => {
+const getRndResultScreen = () => {
   const resultElements = [resultWin, resultTimeout, resultExhaust];
-  const randomIndex = Math.floor(Math.random() * resultElements.length - 1);
-  return resultElements[randomIndex];
+  const rndIndex = Math.floor(Math.random() * resultElements.length - 1);
+  return resultElements[rndIndex];
 };
-sendButton.addEventListener(`click`, () => {
-  renderScreen(getRandomResult());
-});
+sendButton.addEventListener(`click`, () => renderScreen(getRndResultScreen()));
 
 const answerWrapper = element.querySelector(`.genre`);
 answerWrapper.addEventListener(`click`, () => {
+  // Собирает все чекбоксы и проверяет, есть ли хоть один чекнутый
   const checkboxList = Array.from(answerWrapper.querySelectorAll(`input[type="checkbox"]`));
   const checkedList = checkboxList.map((it) => {
-    return !!it.checked;
+    return Boolean(it.checked);
   });
   if (checkedList.indexOf(true) !== -1) {
     sendButton.removeAttribute(`disabled`);
