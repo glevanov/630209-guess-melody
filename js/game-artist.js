@@ -2,7 +2,7 @@ import {createElement, renderScreen} from './util.js';
 import greeting from './greeting.js';
 import gameGenre from './game-genre.js';
 
-const TEMPLATE = `<section class="main main--level main--level-artist">
+const template = `<section class="main main--level main--level-artist">
   <a class="play-again play-again__wrap" href="#">
     <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
   </a>
@@ -64,7 +64,7 @@ const TEMPLATE = `<section class="main main--level main--level-artist">
     </form>
   </div>
 </section>`;
-const element = createElement(TEMPLATE);
+const element = createElement(template);
 
 const returnButton = element.querySelector(`.play-again`);
 returnButton.addEventListener(`click`, () => renderScreen(greeting));

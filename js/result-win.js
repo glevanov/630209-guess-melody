@@ -1,7 +1,7 @@
 import {createElement, renderScreen} from './util.js';
 import greeting from './greeting';
 
-const TEMPLATE = `<section class="main main--result">
+const template = `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
 
   <h2 class="title">Вы настоящий меломан!</h2>
@@ -11,7 +11,7 @@ const TEMPLATE = `<section class="main main--result">
   <span class="main-comparison">Вы заняли 2 место из 10. Это&nbsp;лучше чем у&nbsp;80%&nbsp;игроков</span>
   <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
 </section>`;
-const element = createElement(TEMPLATE);
+const element = createElement(template);
 
 const returnButton = element.querySelector(`.main-replay`);
 returnButton.addEventListener(`click`, () => renderScreen(greeting));

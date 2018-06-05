@@ -4,7 +4,7 @@ import resultWin from './result-win';
 import resultTimeout from './result-timeout';
 import resultExhaust from './result-exhaust';
 
-const TEMPLATE = `<section class="main main--level main--level-genre">
+const template = `<section class="main main--level main--level-genre">
   <a class="play-again play-again__wrap" href="#">
     <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
   </a>
@@ -85,17 +85,16 @@ const TEMPLATE = `<section class="main main--level main--level-genre">
         <label class="genre-answer-check" for="a-4"></label>
       </div>
 
-      <button class="genre-answer-send" type="submit">Ответить</button>
+      <button class="genre-answer-send" type="submit" disabled>Ответить</button>
     </form>
   </div>
 </section>`;
-const element = createElement(TEMPLATE);
+const element = createElement(template);
 
 const returnButton = element.querySelector(`.play-again`);
 returnButton.addEventListener(`click`, () => renderScreen(greeting));
 
 const sendButton = element.querySelector(`.genre-answer-send`);
-sendButton.setAttribute(`disabled`, ``);
 const getRndResultScreen = () => {
   const resultElements = [resultWin, resultTimeout, resultExhaust];
   const rndIndex = Math.floor(Math.random() * resultElements.length - 1);
