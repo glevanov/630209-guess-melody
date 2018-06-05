@@ -94,26 +94,22 @@ const element = createElement(template);
 const returnButton = element.querySelector(`.play-again`);
 returnButton.addEventListener(`click`, () => renderScreen(greeting));
 
-const sendButton = element.querySelector(`.genre-answer-send`);
 const getRndResultScreen = () => {
   const resultElements = [resultWin, resultTimeout, resultExhaust];
   const rndIndex = Math.floor(Math.random() * resultElements.length - 1);
   return resultElements[rndIndex];
 };
-sendButton.addEventListener(`click`, () => renderScreen(getRndResultScreen()));
 
-const answerWrapper = element.querySelector(`.genre`);
-answerWrapper.addEventListener(`click`, () => {
-  // Собирает все чекбоксы и проверяет, есть ли хоть один чекнутый
-  const checkboxList = Array.from(answerWrapper.querySelectorAll(`input[type="checkbox"]`));
-  const checkedList = checkboxList.map((it) => {
-    return Boolean(it.checked);
-  });
-  if (checkedList.indexOf(true) !== -1) {
-    sendButton.removeAttribute(`disabled`);
+const answerForm = element.querySelector(`.genre`);
+const sendButton = answerForm.querySelector(`.genre-answer-send`);
+const checkboxes = Array.from(answerForm.elements.answer);
+answerForm.addEventListener(`change`, () => {
+  if (checkboxes.some((it) => it.checked)) {
+    sendButton.disabled = false;
   } else {
-    sendButton.setAttribute(`disabled`, ``);
+    sendButton.disabled = true;
   }
 });
+answerForm.addEventListener(`submit`, () => renderScreen(getRndResultScreen()));
 
 export default element;
