@@ -12,7 +12,7 @@ const mockStats = [4, 6, 7, 8, 10, 11, 15, 16, 19, 20];
 const timeoutMessage = `Время вышло! Вы не успели отгадать все мелодии`;
 const noLivesMessage = `У вас закончились все попытки. Ничего, повезёт в следующий раз!`;
 
-describe(`test results output`, () => {
+describe(`results output`, () => {
   it(`returns correct message for win`, () => {
     assert.equal(`Вы заняли 3 место из 11 игроков. Это лучше, чем у 80% игроков`,
         showResults(mockStats, new PlayerResult(17, 3, 100)));

@@ -23,7 +23,7 @@ const getMockAnswers = (totalAnswers, correctAnswers, quickAnswers) => {
   return answers;
 };
 
-describe(`check score calculation`, () => {
+describe(`score calculation`, () => {
   it(`fails if less then 10 answers`, () => {
     assert.equal(-1, calculateScore(getMockAnswers(9, 9, 9), 0));
     assert.equal(-1, calculateScore(getMockAnswers(9, 8, 1), 1));
