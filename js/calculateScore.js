@@ -3,13 +3,11 @@ const QUICK_ANSWER_MAX_TIME = 29;
 const LONG_ANSWER_VALUE = 1;
 const QUICK_ANSWER_VALUE = 2;
 const WRONG_ANSWER_VALUE = -2;
+const ERROR_CODE = -1;
 
 export const calculateScore = (answers, notes) => {
-  if (answers.length !== MAX_ANSWERS) {
-    return -1;
-  }
-  if (notes >= 3) {
-    return -1;
+  if (answers.length !== MAX_ANSWERS || notes >= 3) {
+    return ERROR_CODE;
   }
 
   return answers.reduce((total, it) => {
