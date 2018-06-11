@@ -12,8 +12,7 @@ export const calculateScore = (answers, notes) => {
     return -1;
   }
 
-  let score;
-  score = answers.reduce((total, it) => {
+  return answers.reduce((total, it) => {
     if (it.isCorrect && it.time > QUICK_ANSWER_MAX_TIME) {
       total += LONG_ANSWER_VALUE;
     }
@@ -25,6 +24,4 @@ export const calculateScore = (answers, notes) => {
     }
     return total;
   }, 0);
-
-  return score;
 };
