@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {calculateScore} from '../logic.js';
+import {calculateScore} from '../calculateScore.js';
 
 const getMockAnswers = (totalAnswers, correctAnswers, quickAnswers) => {
   function Answer(isCorrect, time) {

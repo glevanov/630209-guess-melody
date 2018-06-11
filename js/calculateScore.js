@@ -4,8 +4,11 @@ const LONG_ANSWER_VALUE = 1;
 const QUICK_ANSWER_VALUE = 2;
 const WRONG_ANSWER_VALUE = -2;
 
-export const calculateScore = (answers) => {
+export const calculateScore = (answers, notes) => {
   if (answers.length !== MAX_ANSWERS) {
+    return -1;
+  }
+  if (notes >= 3) {
     return -1;
   }
 
@@ -22,9 +25,6 @@ export const calculateScore = (answers) => {
     }
     return total;
   }, 0);
-  if (score < 0) {
-    score = 0;
-  }
 
   return score;
 };
