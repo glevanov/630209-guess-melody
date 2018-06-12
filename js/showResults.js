@@ -15,5 +15,9 @@ export const showResults = (otherResults, playerResult) => {
   const place = totalPlayers - scoreIndex;
   const playerPercentage = scoreIndex / otherResults.length * 100;
 
+  if (place === totalPlayers || place === 1) {
+    return `Вы заняли ${place} место из ${totalPlayers} игроков.`;
+  }
+
   return `Вы заняли ${place} место из ${totalPlayers} игроков. Это лучше, чем у ${playerPercentage}% игроков`;
 };

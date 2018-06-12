@@ -2,11 +2,10 @@ export const setTimer = (time) => {
   return {
     time,
     tick() {
-      if (time > 1) {
-        return setTimer(time - 1);
-      } else {
-        return {done: true};
+      if (time >= 1) {
+        this.time -= 1;
       }
+      return {time: this.time, done: this.time === 0};
     }
   };
 };

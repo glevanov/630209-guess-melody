@@ -1,24 +1,20 @@
 import {assert} from 'chai';
-import {calculateScore} from '../calculateScore.js';
+import {calculateScore} from './calculateScore.js';
+
+const LONG_ANSWER = 60;
+const QUICK_ANSWER = 10;
 
 const getMockAnswers = (totalAnswers, correctAnswers, quickAnswers) => {
-  function Answer(isCorrect, time) {
-    this.isCorrect = isCorrect;
-    this.time = time;
-  }
-
   const answers = [];
-  const longAnswer = 60;
-  const quickAnswer = 10;
 
   for (let i = 0; i < totalAnswers; i++) {
-    answers.push(new Answer(false, longAnswer));
+    answers.push({isCorrect: false, time: LONG_ANSWER});
   }
   for (let i = 0; i < correctAnswers; i++) {
     answers[i].isCorrect = true;
   }
   for (let i = 0; i < quickAnswers; i++) {
-    answers[i].time = quickAnswer;
+    answers[i].time = QUICK_ANSWER;
   }
   return answers;
 };

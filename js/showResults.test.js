@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {showResults} from '../showResults';
+import {showResults} from './showResults';
 
 function PlayerResult(score, notes, time) {
   this.score = score;
@@ -18,8 +18,10 @@ describe(`results output`, () => {
         showResults(mockStats, new PlayerResult(17, 3, 100)));
     assert.equal(`Вы заняли 7 место из 11 игроков. Это лучше, чем у 40% игроков`,
         showResults(mockStats, new PlayerResult(9, 3, 100)));
-    assert.equal(`Вы заняли 11 место из 11 игроков. Это лучше, чем у 0% игроков`,
+    assert.equal(`Вы заняли 11 место из 11 игроков.`,
         showResults(mockStats, new PlayerResult(3, 3, 100)));
+    assert.equal(`Вы заняли 1 место из 11 игроков.`,
+        showResults(mockStats, new PlayerResult(21, 3, 100)));
   });
   it(`returns correct message for timeout`, () => {
     assert.equal(timeoutMessage, showResults(mockStats, new PlayerResult(5, 3, 0)));

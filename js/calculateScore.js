@@ -1,3 +1,5 @@
+import {MAX_LIVES} from './constants';
+
 const MAX_ANSWERS = 10;
 const QUICK_ANSWER_MAX_TIME = 29;
 const LONG_ANSWER_VALUE = 1;
@@ -6,20 +8,18 @@ const WRONG_ANSWER_VALUE = -2;
 const ERROR_CODE = -1;
 
 export const calculateScore = (answers, notes) => {
-  if (answers.length !== MAX_ANSWERS || notes >= 3) {
+  if (answers.length !== MAX_ANSWERS || notes >= MAX_LIVES) {
     return ERROR_CODE;
   }
-
   return answers.reduce((total, it) => {
-    if (it.isCorrect && it.time > QUICK_ANSWER_MAX_TIME) {
-      total += LONG_ANSWER_VALUE;
+    if (it.isCorrect) {
+      if (it.time > QUICK_ANSWER_MAX_TIME) {
+        return total + LONG_ANSWER_VALUE;
+      }
+      if (it.time <= QUICK_ANSWER_MAX_TIME) {
+        return total + QUICK_ANSWER_VALUE;
+      }
     }
-    if (it.isCorrect && it.time <= QUICK_ANSWER_MAX_TIME) {
-      total += QUICK_ANSWER_VALUE;
-    }
-    if (!it.isCorrect) {
-      total += WRONG_ANSWER_VALUE;
-    }
-    return total;
+    return total + WRONG_ANSWER_VALUE;
   }, 0);
 };
