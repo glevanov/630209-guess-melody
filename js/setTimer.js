@@ -1,3 +1,12 @@
 export const setTimer = (time) => {
-  return time - 1;
+  return {
+    time,
+    tick() {
+      if (time > 0) {
+        return time - 1;
+      } else {
+        return {done: true};
+      }
+    }
+  };
 };
