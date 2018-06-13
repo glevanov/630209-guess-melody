@@ -1,7 +1,5 @@
-import {MAX_LIVES} from './constants';
+import {MAX_LIVES, MAX_ANSWERS, QUICK_ANSWER_MAX_TIME} from './commonConst';
 
-const MAX_ANSWERS = 10;
-const QUICK_ANSWER_MAX_TIME = 29;
 const LONG_ANSWER_VALUE = 1;
 const QUICK_ANSWER_VALUE = 2;
 const WRONG_ANSWER_VALUE = -2;
