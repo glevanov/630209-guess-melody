@@ -1,4 +1,4 @@
-import {MAX_LIVES, MAX_ANSWERS, QUICK_ANSWER_MAX_TIME} from './commonConst';
+import {MAX_LIVES, MAX_ANSWERS, QUICK_ANSWER_MAX_TIME} from '../data/commonConst';
 
 const LONG_ANSWER_VALUE = 1;
 const QUICK_ANSWER_VALUE = 2;

@@ -1,4 +1,4 @@
-import {createElement, renderScreen} from './util.js';
+import {createElement, renderScreen} from '../util.js';
 import greeting from './greeting';
 
 const template = `<section class="main main--result">
