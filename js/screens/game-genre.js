@@ -1,4 +1,4 @@
-import {createElement, renderScreen} from '../util.js';
+import {createElement, renderScreen} from '../logic/util.js';
 import greeting from './greeting';
 import resultWin from './result-win';
 import resultTimeout from './result-timeout';

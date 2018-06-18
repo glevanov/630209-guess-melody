@@ -1,4 +1,4 @@
-import {createElement, renderScreen} from '../util.js';
+import {createElement, renderScreen} from '../logic/util.js';
 import greeting from './greeting.js';
 import gameGenre from './game-genre.js';
 import progress from '../data/progress.js';

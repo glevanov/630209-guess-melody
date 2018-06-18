@@ -1,8 +1,3 @@
-const data = {
-  game: {
-    // Сюда тип игры???
-  },
-  currentQuestion: 0
-};
+const data = {};
 
 export default data;

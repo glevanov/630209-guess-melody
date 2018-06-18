@@ -1,4 +1,4 @@
-import {createElement, renderScreen} from '../util.js';
+import {createElement, renderScreen} from '../logic/util.js';
 import gameArtist from './game-artist.js';
 
 const template = `<section class="main main--welcome">

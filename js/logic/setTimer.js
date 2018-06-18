@@ -5,7 +5,9 @@ export const setTimer = (time) => {
       if (time >= 1) {
         this.time -= 1;
       }
-      return {time: this.time, done: this.time === 0};
+      return {
+        time: this.time,
+        done: this.time === 0};
     }
   };
 };
