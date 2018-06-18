@@ -6,7 +6,7 @@ const template = `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
 
   <h2 class="title">${results.timeout.title}</h2>
-  <div class="main-stat">${results.timeout.message}</div>
+  <div class="main-stat">${results.timeout.stats}</div>
   <span role="button" tabindex="0" class="main-replay">${results.timeout.replay}</span>
 </section>`;
 const element = createElement(template);
