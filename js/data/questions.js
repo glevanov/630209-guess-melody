@@ -18,7 +18,7 @@ const mockArtistQuestion = {
     },
     {
       artist: `Riot`,
-      imageSrc: `https://www.youtube.com/audiolibrary_download?vid=dfb828f40096184c`,
+      imageSrc: `https://i.ytimg.com/vi/jzgM3m8Vp1k/maxresdefault.jpg`,
       isCorrect: false
     }
   ]
@@ -59,7 +59,10 @@ const getRndQuestion = () => {
   return mockGenreQuestion;
 };
 
-for (let i = 0; i < MAX_ANSWERS; i++) {
+questions.push(mockArtistQuestion);
+questions.push(mockGenreQuestion);
+
+for (let i = 0; i < MAX_ANSWERS - 2; i++) {
   questions.push(getRndQuestion());
 }
 

@@ -1,3 +1,5 @@
+import questions from './questions.js';
+
 const initialState = {
   // надо бы придумать
 };
@@ -5,7 +7,7 @@ const initialState = {
 const data = {
   level: 0,
   time: 300,
-  question: null,
+  currentQuestion: questions[0],
   errors: 0
 };
 

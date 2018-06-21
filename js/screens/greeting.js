@@ -1,5 +1,6 @@
 import {createElement, renderScreen} from '../logic/util.js';
 import gameArtist from './game-artist.js';
+import data from '../data/data.js';
 
 const template = `<section class="main main--welcome">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -13,6 +14,6 @@ const template = `<section class="main main--welcome">
 </section>`;
 const element = createElement(template);
 
-element.querySelector(`.main-play`).addEventListener(`click`, () => renderScreen(gameArtist));
+element.querySelector(`.main-play`).addEventListener(`click`, () => renderScreen(gameArtist(data)));
 
 export default element;
