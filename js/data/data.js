@@ -1,14 +1,13 @@
-import questions from './questions.js';
-
-const initialState = {
-  // надо бы придумать
-};
-
-const data = {
-  level: 0,
+export const initialState = Object.freeze({
   time: 300,
-  currentQuestion: questions[0],
-  errors: 0
-};
+  currentQuestion: 0,
+  errors: 0,
+  answers: []
+});
 
-export default data;
+export const data = {
+  time: 300,
+  currentQuestion: 0,
+  errors: 0,
+  answers: []
+};
