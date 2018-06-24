@@ -33,7 +33,7 @@ export default {
       return resultTimeout;
     }
     if (data.answers.length === MAX_ANSWERS) {
-      return resultWin;
+      return resultWin();
     }
     if (questions[getQuestionIndex()].question.type === `artist`) {
       return gameArtist();
