@@ -28,7 +28,7 @@ export default () => {
       <h2 class="title main-title">Кто исполняет эту песню?</h2>
       <div class="player-wrapper">
         <div class="player">
-          <audio src="${questions[getQuestionIndex()].question.audio}"></audio>
+          <audio src="${questions[getQuestionIndex()].question.audio}" autoplay></audio>
           <button class="player-control player-control--pause"></button>
           <div class="player-track">
             <span class="player-status"></span>
@@ -66,6 +66,20 @@ export default () => {
     game.updateErrorCount(answer);
     game.pushAnswer(answer);
     renderScreen(game.getGameScreen());
+  });
+
+  const audio = element.querySelector(`audio`);
+  const audioControl = element.querySelector(`.player-control`);
+  audioControl.addEventListener(`click`, () => {
+    if (audio.paused) {
+      audioControl.classList.remove(`player-control--play`);
+      audioControl.classList.add(`player-control--pause`);
+      audio.play();
+    } else {
+      audioControl.classList.remove(`player-control--pause`);
+      audioControl.classList.add(`player-control--play`);
+      audio.pause();
+    }
   });
 
   return element;
