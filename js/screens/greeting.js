@@ -1,5 +1,5 @@
 import {createElement, renderScreen} from '../logic/util.js';
-import {getGameScreen} from '../logic/controller';
+import game from '../logic/game';
 
 const template = `<section class="main main--welcome">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -13,6 +13,6 @@ const template = `<section class="main main--welcome">
 </section>`;
 const element = createElement(template);
 
-element.querySelector(`.main-play`).addEventListener(`click`, () => renderScreen(getGameScreen()));
+element.querySelector(`.main-play`).addEventListener(`click`, () => renderScreen(game.getGameScreen()));
 
 export default element;

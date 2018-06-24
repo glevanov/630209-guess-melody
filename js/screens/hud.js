@@ -1,4 +1,13 @@
-const hud = `\
+import {data} from '../data/data.js';
+import note from './note';
+
+export default () => {
+  let notes = ``;
+  for (let i = 0; i < data.errors; i++) {
+    notes += note;
+  }
+
+  return `\
   <a class="play-again play-again__wrap" href="#">
     <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
   </a>
@@ -9,10 +18,13 @@ const hud = `\
       style="filter: url(..#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"></circle>
 
     <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
-      <span class="timer-value-mins">05</span><!--
-      --><span class="timer-value-dots">:</span><!--
-      --><span class="timer-value-secs">00</span>
+      <span class="timer-value-mins">05</span>
+      <span class="timer-value-dots">:</span>
+      <span class="timer-value-secs">00</span>
     </div>
-  </svg>`;
+  </svg>
+  <div class="main-mistakes">
+  ${notes}
+  </div>`;
+};
 
-export default hud;

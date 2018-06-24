@@ -2,7 +2,7 @@ import {createElement, renderScreen} from '../logic/util.js';
 import greeting from './greeting';
 import hud from './hud.js';
 import questions from '../data/questions.js';
-import {pushAnswer, getGameScreen, resetData, getQuestionIndex} from '../logic/controller';
+import game, {getQuestionIndex} from '../logic/game';
 import {MOCK_TIME} from "../data/commonConst";
 
 export default () => {
@@ -28,7 +28,7 @@ export default () => {
 
   const template = `\
   <section class="main main--level main--level-genre">
-    ${hud}
+    ${hud()}
     <div class="main-wrap">
       <h2 class="title">Выберите ${questions[getQuestionIndex()].question.genre} треки</h2>
       <form class="genre">
@@ -41,7 +41,7 @@ export default () => {
   const element = createElement(template);
 
   element.querySelector(`.play-again`).addEventListener(`click`, () => {
-    resetData();
+    game.resetData();
     renderScreen(greeting);
   });
 
@@ -69,8 +69,9 @@ export default () => {
     if (playerAnswers.toString() === correctAnswers.toString()) {
       answer.isCorrect = true;
     }
-    pushAnswer(answer);
-    renderScreen(getGameScreen());
+    game.updateErrorCount(answer);
+    game.pushAnswer(answer);
+    renderScreen(game.getGameScreen());
   });
 
   return element;

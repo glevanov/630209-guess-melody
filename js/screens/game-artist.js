@@ -3,7 +3,7 @@ import greeting from './greeting.js';
 import hud from './hud.js';
 import questions from '../data/questions.js';
 import {MOCK_TIME} from '../data/commonConst';
-import {pushAnswer, getGameScreen, resetData, getQuestionIndex} from '../logic/controller';
+import game, {getQuestionIndex} from '../logic/game';
 
 export default () => {
   let answers = ``;
@@ -23,7 +23,7 @@ export default () => {
 
   const template = `\
   <section class="main main--level main--level-artist">
-    ${hud}
+    ${hud()}
     <div class="main-wrap">
       <h2 class="title main-title">Кто исполняет эту песню?</h2>
       <div class="player-wrapper">
@@ -44,7 +44,7 @@ export default () => {
   const element = createElement(template);
   const form = element.querySelector(`.main-list`);
   element.querySelector(`.play-again`).addEventListener(`click`, () => {
-    resetData();
+    game.resetData();
     renderScreen(greeting);
   });
 
@@ -63,8 +63,9 @@ export default () => {
     if (questions[getQuestionIndex()].answers[checkedIndex].isCorrect) {
       answer.isCorrect = true;
     }
-    pushAnswer(answer);
-    renderScreen(getGameScreen());
+    game.updateErrorCount(answer);
+    game.pushAnswer(answer);
+    renderScreen(game.getGameScreen());
   });
 
   return element;
