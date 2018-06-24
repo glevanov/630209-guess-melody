@@ -2,8 +2,9 @@ import {createElement, renderScreen} from '../logic/util.js';
 import greeting from './greeting.js';
 import hud from './hud.js';
 import questions from '../data/questions.js';
-import {MOCK_TIME} from '../data/commonConst';
 import game, {getQuestionIndex} from '../logic/game';
+import playPause from '../logic/playPause';
+import constants from "../data/constants";
 
 export default () => {
   let answers = ``;
@@ -58,7 +59,7 @@ export default () => {
     }
     const answer = {
       isCorrect: false,
-      time: MOCK_TIME
+      time: constants.MOCK_TIME
     };
     if (questions[getQuestionIndex()].answers[checkedIndex].isCorrect) {
       answer.isCorrect = true;
@@ -70,17 +71,7 @@ export default () => {
 
   const audio = element.querySelector(`audio`);
   const audioControl = element.querySelector(`.player-control`);
-  audioControl.addEventListener(`click`, () => {
-    if (audio.paused) {
-      audioControl.classList.remove(`player-control--play`);
-      audioControl.classList.add(`player-control--pause`);
-      audio.play();
-    } else {
-      audioControl.classList.remove(`player-control--pause`);
-      audioControl.classList.add(`player-control--play`);
-      audio.pause();
-    }
-  });
+  audioControl.addEventListener(`click`, () => playPause(audio, audioControl));
 
   return element;
 };

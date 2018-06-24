@@ -1,6 +1,6 @@
 import {data} from './data.js';
 import {showResults} from '../logic/showResults.js';
-import {mockStats} from './commonConst.js';
+import constants from './constants.js';
 import calculate from '../logic/calculate';
 
 const SECONDS_IN_MINUTE = 60;
@@ -16,7 +16,7 @@ export default () => {
       stats: `За&nbsp;${mockTime.minutes}&nbsp;минуты и ${mockTime.seconds}&nbsp;секунд
     <br>вы&nbsp;набрали ${calculate.score(data.answers, data.errors)} баллов (${calculate.quickAnswers(data.answers)} быстрых)
     <br>совершив ${data.errors} ошибки`,
-      comparison: showResults(mockStats, data.answers),
+      comparison: showResults(constants.MOCK_STATS, data.answers),
       replay: `Сыграть ещё раз`
     },
     timeout: {

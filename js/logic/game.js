@@ -5,7 +5,7 @@ import gameGenre from '../screens/game-genre';
 import resultFail from '../screens/result-fail';
 import resultTimeout from '../screens/result-timeout';
 import resultWin from '../screens/result-win';
-import {MAX_ANSWERS, MAX_LIVES} from '../data/commonConst';
+import constants from '../data/constants';
 
 export const getQuestionIndex = () => {
   if (data.answers.length === 0) {
@@ -26,13 +26,13 @@ export default {
     }
   },
   getGameScreen: () => {
-    if (data.errors === MAX_LIVES) {
+    if (data.errors === constants.MAX_LIVES) {
       return resultFail;
     }
     if (data.time === 0) {
       return resultTimeout;
     }
-    if (data.answers.length === MAX_ANSWERS) {
+    if (data.answers.length === constants.MAX_ANSWERS) {
       return resultWin();
     }
     if (questions[getQuestionIndex()].question.type === `artist`) {

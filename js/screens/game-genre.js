@@ -3,7 +3,7 @@ import greeting from './greeting';
 import hud from './hud.js';
 import questions from '../data/questions.js';
 import game, {getQuestionIndex} from '../logic/game';
-import {MOCK_TIME} from "../data/commonConst";
+import constants from '../data/constants';
 
 export default () => {
   let answers = ``;
@@ -64,7 +64,7 @@ export default () => {
 
     const answer = {
       isCorrect: false,
-      time: MOCK_TIME
+      time: constants.MOCK_TIME
     };
     if (playerAnswers.toString() === correctAnswers.toString()) {
       answer.isCorrect = true;

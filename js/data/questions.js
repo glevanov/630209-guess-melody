@@ -1,4 +1,4 @@
-import {MAX_ANSWERS} from './commonConst';
+import {MAX_ANSWERS} from './constants';
 
 const mockArtistQuestion = {
   question: {
