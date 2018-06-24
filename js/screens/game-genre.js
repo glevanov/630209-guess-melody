@@ -1,20 +1,20 @@
 import {createElement, renderScreen} from '../logic/util.js';
 import greeting from './greeting';
-import resultWin from './result-win';
-import resultTimeout from './result-timeout';
-import resultExhaust from './result-fail';
-import progress from '../data/progress.js';
+import hud from './hud.js';
+import questions from '../data/questions.js';
+import {pushAnswer, getGameScreen, resetData, getQuestionIndex} from '../logic/controller';
+import {MOCK_TIME} from "../data/commonConst";
 
-export default (data) => {
+export default () => {
   let answers = ``;
-  const answersQuantity = data.currentQuestion.answers.length;
+  const answersQuantity = questions[getQuestionIndex()].answers.length;
 
   for (let i = 0; i < answersQuantity; i++) {
     answers += `\
     <div class="genre-answer">
       <div class="player-wrapper">
         <div class="player">
-          <audio src="${data.currentQuestion.answers[i].audio}"></audio>
+          <audio src="${questions[getQuestionIndex()].answers[i].audio}"></audio>
           <button class="player-control player-control--pause"></button>
           <div class="player-track">
             <span class="player-status"></span>
@@ -28,9 +28,9 @@ export default (data) => {
 
   const template = `\
   <section class="main main--level main--level-genre">
-    ${progress}
+    ${hud}
     <div class="main-wrap">
-      <h2 class="title">Выберите ${data.currentQuestion.question.genre} треки</h2>
+      <h2 class="title">Выберите ${questions[getQuestionIndex()].question.genre} треки</h2>
       <form class="genre">
         ${answers}
         <button class="genre-answer-send" type="submit" disabled>Ответить</button>
@@ -40,13 +40,10 @@ export default (data) => {
 
   const element = createElement(template);
 
-  element.querySelector(`.play-again`).addEventListener(`click`, () => renderScreen(greeting));
-
-  const getRndResultScreen = () => {
-    const resultElements = [resultWin, resultTimeout, resultExhaust];
-    const rndIndex = Math.floor(Math.random() * resultElements.length - 1);
-    return resultElements[rndIndex];
-  };
+  element.querySelector(`.play-again`).addEventListener(`click`, () => {
+    resetData();
+    renderScreen(greeting);
+  });
 
   const answerForm = element.querySelector(`.genre`);
   const sendButton = answerForm.querySelector(`.genre-answer-send`);
@@ -54,7 +51,27 @@ export default (data) => {
   answerForm.addEventListener(`change`, () => {
     sendButton.disabled = !checkboxes.some((it) => it.checked);
   });
-  answerForm.addEventListener(`submit`, () => renderScreen(getRndResultScreen()));
+
+  answerForm.addEventListener(`submit`, () => {
+    const correctAnswers = [];
+    questions[getQuestionIndex()].answers.forEach((it) => {
+      correctAnswers.push(it.isCorrect);
+    });
+    const playerAnswers = [];
+    checkboxes.forEach((it) => {
+      playerAnswers.push(it.checked);
+    });
+
+    const answer = {
+      isCorrect: false,
+      time: MOCK_TIME
+    };
+    if (playerAnswers.toString() === correctAnswers.toString()) {
+      answer.isCorrect = true;
+    }
+    pushAnswer(answer);
+    renderScreen(getGameScreen());
+  });
 
   return element;
 };

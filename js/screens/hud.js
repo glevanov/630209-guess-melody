@@ -1,4 +1,4 @@
-const progress = `\
+const hud = `\
   <a class="play-again play-again__wrap" href="#">
     <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
   </a>
@@ -15,4 +15,4 @@ const progress = `\
     </div>
   </svg>`;
 
-export default progress;
+export default hud;

@@ -59,10 +59,7 @@ const getRndQuestion = () => {
   return mockGenreQuestion;
 };
 
-questions.push(mockArtistQuestion);
-questions.push(mockGenreQuestion);
-
-for (let i = 0; i < MAX_ANSWERS - 2; i++) {
+for (let i = 0; i < MAX_ANSWERS; i++) {
   questions.push(getRndQuestion());
 }
 

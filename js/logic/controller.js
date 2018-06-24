@@ -5,21 +5,22 @@ import gameGenre from '../screens/game-genre';
 
 export const resetData = () => {
   data.time = initialState.time;
-  data.currentQuestion = initialState.currentQuestion;
   data.errors = initialState.errors;
   data.answers = initialState.answers;
-  console.log(data);
+};
+
+export const getQuestionIndex = () => {
+  if (data.answers.length === 0) {
+    return 0;
+  }
+  return data.answers.length - 1;
 };
 
 export const getGameScreen = () => {
-  if (questions[data.currentQuestion].question.type === `artist`) {
+  if (questions[getQuestionIndex()].question.type === `artist`) {
     return gameArtist();
   }
   return gameGenre();
-};
-
-export const incrementQuestionCounter = () => {
-  data.currentQuestion += 1;
 };
 
 export const pushAnswer = (answer) => {
