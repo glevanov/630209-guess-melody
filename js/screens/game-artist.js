@@ -3,7 +3,7 @@ import greeting from './greeting.js';
 import hud from './hud.js';
 import questions from '../data/questions.js';
 import game, {getQuestionIndex} from '../logic/game';
-import playPause from '../logic/playPause';
+import audio from '../logic/audio';
 import constants from "../data/constants";
 
 export default () => {
@@ -69,9 +69,9 @@ export default () => {
     renderScreen(game.getGameScreen());
   });
 
-  const audio = element.querySelector(`audio`);
+  const audioElement = element.querySelector(`audio`);
   const audioControl = element.querySelector(`.player-control`);
-  audioControl.addEventListener(`click`, () => playPause(audio, audioControl));
+  audioControl.addEventListener(`click`, () => audio.playPause(audioElement, audioControl));
 
   return element;
 };

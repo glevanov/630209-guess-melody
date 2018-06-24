@@ -4,7 +4,7 @@ import hud from './hud.js';
 import questions from '../data/questions.js';
 import game, {getQuestionIndex} from '../logic/game';
 import constants from '../data/constants';
-import playPause from '../logic/playPause';
+import audio from '../logic/audio';
 
 export default () => {
   let answers = ``;
@@ -75,15 +75,19 @@ export default () => {
     renderScreen(game.getGameScreen());
   });
 
-  const audioElements = answerForm.querySelectorAll(`audio`);
+  const audioElements = Array.from(answerForm.querySelectorAll(`audio`));
   audioElements[0].autoplay = true;
-  answerForm.querySelector(`[data-index="0"]`).classList.remove(`player-control--play`);
-  answerForm.querySelector(`.player-control`).classList.add(`player-control--pause`);
+  audio.switchPlayIcon(answerForm.querySelector(`[data-index="0"]`));
 
   answerForm.addEventListener(`click`, (evt) => {
     if (evt.target.classList.contains(`player-control`)) {
+      // Вот здесь ниже что-то не то с проверкой
+      const nowPlaying = audioElements.filter((it) => !it.paused)[0];
+      if (nowPlaying !== undefined) {
+        audio.playPause(nowPlaying, nowPlaying.nextElementSibling);
+      }
       const targetIndex = evt.target.dataset.index;
-      playPause(audioElements[targetIndex], evt.target);
+      audio.playPause(audioElements[targetIndex], evt.target);
     }
   });
 
