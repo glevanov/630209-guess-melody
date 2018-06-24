@@ -4,6 +4,7 @@ import hud from './hud.js';
 import questions from '../data/questions.js';
 import game, {getQuestionIndex} from '../logic/game';
 import constants from '../data/constants';
+import playPause from '../logic/playPause';
 
 export default () => {
   let answers = ``;
@@ -15,7 +16,7 @@ export default () => {
       <div class="player-wrapper">
         <div class="player">
           <audio src="${questions[getQuestionIndex()].answers[i].audio}"></audio>
-          <button class="player-control player-control--pause"></button>
+          <button class="player-control player-control--play" type="button" data-index="${i}"></button>
           <div class="player-track">
             <span class="player-status"></span>
           </div>
@@ -48,10 +49,10 @@ export default () => {
   const answerForm = element.querySelector(`.genre`);
   const sendButton = answerForm.querySelector(`.genre-answer-send`);
   const checkboxes = Array.from(answerForm.elements.answer);
+
   answerForm.addEventListener(`change`, () => {
     sendButton.disabled = !checkboxes.some((it) => it.checked);
   });
-
   answerForm.addEventListener(`submit`, () => {
     const correctAnswers = [];
     questions[getQuestionIndex()].answers.forEach((it) => {
@@ -72,6 +73,18 @@ export default () => {
     game.updateErrorCount(answer);
     game.pushAnswer(answer);
     renderScreen(game.getGameScreen());
+  });
+
+  const audioElements = answerForm.querySelectorAll(`audio`);
+  audioElements[0].autoplay = true;
+  answerForm.querySelector(`[data-index="0"]`).classList.remove(`player-control--play`);
+  answerForm.querySelector(`.player-control`).classList.add(`player-control--pause`);
+
+  answerForm.addEventListener(`click`, (evt) => {
+    if (evt.target.classList.contains(`player-control`)) {
+      const targetIndex = evt.target.dataset.index;
+      playPause(audioElements[targetIndex], evt.target);
+    }
   });
 
   return element;
