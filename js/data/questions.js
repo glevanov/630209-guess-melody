@@ -1,4 +1,4 @@
-import {MAX_ANSWERS} from './constants';
+import constants from './constants';
 
 const mockArtistQuestion = {
   question: {
@@ -59,7 +59,7 @@ const getRndQuestion = () => {
   return mockGenreQuestion;
 };
 
-for (let i = 0; i < MAX_ANSWERS; i++) {
+for (let i = 0; i < constants.MAX_ANSWERS; i++) {
   questions.push(getRndQuestion());
 }
 

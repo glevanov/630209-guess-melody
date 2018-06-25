@@ -4,7 +4,7 @@ export const initialState = Object.freeze({
   answers: []
 });
 
-export const data = {
+export default {
   time: 300,
   errors: 0,
   answers: []

@@ -1,4 +1,4 @@
-import {data} from '../data/data.js';
+import data from '../data/data.js';
 import note from './note';
 
 export default () => {

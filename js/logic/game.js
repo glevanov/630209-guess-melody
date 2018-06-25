@@ -1,4 +1,4 @@
-import {data, initialState} from '../data/data.js';
+import data, {initialState} from '../data/data.js';
 import questions from '../data/questions';
 import gameArtist from '../screens/game-artist';
 import gameGenre from '../screens/game-genre';

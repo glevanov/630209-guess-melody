@@ -1,6 +1,6 @@
 import {createElement, renderScreen} from '../logic/util.js';
 import greeting from './greeting';
-import results from '../data/results.js';
+import results from '../logic/results.js';
 import game from '../logic/game.js';
 
 const template = `<section class="main main--result">
