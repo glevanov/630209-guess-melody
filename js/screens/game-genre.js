@@ -16,7 +16,7 @@ export default () => {
       <div class="player-wrapper">
         <div class="player">
           <audio src="${questions[getQuestionIndex()].answers[i].audio}"></audio>
-          <button class="player-control player-control--play" type="button" data-index="${i}"></button>
+          <button class="player-control player-control--play" type="button"></button>
           <div class="player-track">
             <span class="player-status"></span>
           </div>
@@ -77,17 +77,20 @@ export default () => {
 
   const audioElements = Array.from(answerForm.querySelectorAll(`audio`));
   audioElements[0].autoplay = true;
-  audio.switchPlayIcon(answerForm.querySelector(`[data-index="0"]`));
+  audio.switchPlayIcon(audioElements[0].nextElementSibling);
 
   answerForm.addEventListener(`click`, (evt) => {
     if (evt.target.classList.contains(`player-control`)) {
-      // Вот здесь ниже что-то не то с проверкой
+      const targetAudio = evt.target.previousElementSibling;
       const nowPlaying = audioElements.filter((it) => !it.paused)[0];
+
+      audio.playPause(targetAudio, evt.target);
       if (nowPlaying !== undefined) {
         audio.playPause(nowPlaying, nowPlaying.nextElementSibling);
       }
-      const targetIndex = evt.target.dataset.index;
-      audio.playPause(audioElements[targetIndex], evt.target);
+      if (targetAudio === nowPlaying) {
+        audio.playPause(targetAudio, evt.target);
+      }
     }
   });
 
